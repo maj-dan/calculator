@@ -1,7 +1,12 @@
 let firstNumber,
     secondNumber,
-    operator;
+    operator,
+    displayValue;
 
+function updateDisplay(value) {
+    const display = document.querySelector("#display");
+    display.textContent = value;
+}
 
 function operate(operator, num1, num2) {
     switch (operator) {
