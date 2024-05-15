@@ -7,7 +7,11 @@ const numberBtns = document.querySelectorAll(".number");
 numberBtns.forEach(btn => btn.addEventListener("click", updateDisplayValue));
 
 const operatorBtns = document.querySelectorAll(".operator");
-operatorBtns.forEach(btn => btn.addEventListener("click", updateOperator))
+operatorBtns.forEach(btn => btn.addEventListener("click", updateOperator));
+
+const equalBtn = document.querySelector("#eql");
+equalBtn.addEventListener("click", showResult);
+
 
 function updateDisplayValue(event) {
     const numberClicked = event.target.textContent;
@@ -20,6 +24,12 @@ function updateOperator(event) {
     operator = event.target.id;
     firstNumber = parseFloat(displayValue);
     displayValue = null;
+}
+
+function showResult() {
+    secondNumber = displayValue;
+    displayValue = operate(operator, firstNumber, secondNumber);
+    updateDisplay(displayValue);
 }
 
 
