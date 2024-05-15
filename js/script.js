@@ -6,11 +6,20 @@ let firstNumber,
 const numberBtns = document.querySelectorAll(".number");
 numberBtns.forEach(btn => btn.addEventListener("click", updateDisplayValue));
 
+const operatorBtns = document.querySelectorAll(".operator");
+operatorBtns.forEach(btn => btn.addEventListener("click", updateOperator))
+
 function updateDisplayValue(event) {
     const numberClicked = event.target.textContent;
     if(!displayValue) displayValue = "";
     displayValue += numberClicked;
     updateDisplay(displayValue);
+}
+
+function updateOperator(event) {
+    operator = event.target.id;
+    firstNumber = parseFloat(displayValue);
+    displayValue = null;
 }
 
 
