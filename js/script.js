@@ -21,8 +21,12 @@ function updateDisplayValue(event) {
 }
 
 function updateOperator(event) {
+    if (!!operator && secondNumber === null) {
+        showResult();
+    } else {
+        firstNumber = parseFloat(displayValue);
+    }
     operator = event.target.id;
-    firstNumber = parseFloat(displayValue);
     displayValue = null;
     secondNumber = null;
 }
@@ -35,13 +39,8 @@ function showResult() {
 }
 
 
-/*simple calculation:
-    Input first number
-    Click on operator
-    Save first Number
-    Input second number
-    Save second Number
-    Operate
+/*
+
 */
 
 function updateDisplay(value) {
