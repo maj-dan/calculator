@@ -3,6 +3,26 @@ let firstNumber,
     operator,
     displayValue;
 
+const numberBtns = document.querySelectorAll(".number");
+numberBtns.forEach(btn => btn.addEventListener("click", updateDisplayValue));
+
+function updateDisplayValue(event) {
+    const numberClicked = event.target.textContent;
+    if(!displayValue) displayValue = "";
+    displayValue += numberClicked;
+    updateDisplay(displayValue);
+}
+
+
+/*simple calculation:
+    Input first number
+    Click on operator
+    Save first Number
+    Input second number
+    Save second Number
+    Operate
+*/
+
 function updateDisplay(value) {
     const display = document.querySelector("#display");
     display.textContent = value;
