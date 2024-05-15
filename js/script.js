@@ -24,12 +24,14 @@ function updateOperator(event) {
     operator = event.target.id;
     firstNumber = parseFloat(displayValue);
     displayValue = null;
+    secondNumber = null;
 }
 
 function showResult() {
-    secondNumber = displayValue;
-    displayValue = operate(operator, firstNumber, secondNumber);
-    updateDisplay(displayValue);
+    secondNumber = !secondNumber ? parseFloat(displayValue) : secondNumber;
+    firstNumber = operate(operator, firstNumber, secondNumber);
+    displayValue = firstNumber;
+    updateDisplay(firstNumber);
 }
 
 
