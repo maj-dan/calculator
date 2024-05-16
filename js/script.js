@@ -33,14 +33,25 @@ function updateOperator(event) {
     } else if (!!displayValue && !firstNumber) {
         firstNumber = parseFloat(displayValue);
     }
+    //prevent storing operator without any number inputed, breaking the calculation
     operator = !!firstNumber ? event.target.id : null;
     displayValue = null;
     secondNumber = null;
 }
 
 function showResult() {
-    if (!firstNumber && !!displayValue) return;
+    //Don't proceed if = has been pressed before numbers were inputed
+    if (!firstNumber || (!!firstNumber && !displayValue)) return;
     secondNumber = !secondNumber ? parseFloat(displayValue) : secondNumber;
+    //Show an "error message" if division by 0
+    if (operator === "div" && secondNumber === 0) {
+        updateDisplay("COME ON!");
+        firstNumber = null;
+        secondNumber = null;
+        operator = null;
+        displayValue = null;
+        return
+    }
     firstNumber = operate(operator, firstNumber, secondNumber);
     displayValue = null;
     updateDisplay(firstNumber);
