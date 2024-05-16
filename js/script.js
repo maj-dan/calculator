@@ -33,12 +33,13 @@ function updateOperator(event) {
     } else if (!!displayValue && !firstNumber) {
         firstNumber = parseFloat(displayValue);
     }
-    operator = event.target.id;
+    operator = !!firstNumber ? event.target.id : null;
     displayValue = null;
     secondNumber = null;
 }
 
 function showResult() {
+    if (!firstNumber && !!displayValue) return;
     secondNumber = !secondNumber ? parseFloat(displayValue) : secondNumber;
     firstNumber = operate(operator, firstNumber, secondNumber);
     displayValue = null;
