@@ -12,6 +12,8 @@ operatorBtns.forEach(btn => btn.addEventListener("click", updateOperator));
 const equalBtn = document.querySelector("#eql");
 equalBtn.addEventListener("click", showResult);
 
+const clearBtn = document.querySelector("#clr");
+clearBtn.addEventListener("click", clearCalculator);
 
 function updateDisplayValue(event) {
     const numberClicked = event.target.textContent;
@@ -21,6 +23,7 @@ function updateDisplayValue(event) {
 }
 
 function updateOperator(event) {
+    //if an operator is defined, then this function had already run once, at least
     if (!!operator && secondNumber === null) {
         showResult();
     } else {
@@ -38,6 +41,13 @@ function showResult() {
     updateDisplay(firstNumber);
 }
 
+function clearCalculator() {
+    firstNumber = null;
+    secondNumber = null;
+    operator = null;
+    displayValue = null;
+    updateDisplay("");
+}
 
 /*
 
