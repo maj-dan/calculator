@@ -24,8 +24,11 @@ function updateDisplayValue(event) {
 
 function updateOperator(event) {
     //if an operator is defined, then this function had already run once, at least
-    if (!!operator && secondNumber === null) {
+    if (!!operator && secondNumber === null && !!displayValue) {
         showResult();
+    //Allow to change the operator before inputing second number
+    } else if (!!operator && secondNumber === null && !displayValue) {
+        return operator = event.target.id;
     } else {
         firstNumber = parseFloat(displayValue);
     }
