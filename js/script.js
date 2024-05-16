@@ -23,13 +23,14 @@ function updateDisplayValue(event) {
 }
 
 function updateOperator(event) {
-    //if an operator is defined, then this function had already run once, at least
+    //clicked in other operator after inputing a second number, calculate
     if (!!operator && secondNumber === null && !!displayValue) {
         showResult();
-    //Allow to change the operator before inputing second number
+    //clicked in other operator ane didn't inputed an second number, change operator
     } else if (!!operator && secondNumber === null && !displayValue) {
         return operator = event.target.id;
-    } else {
+    //Store number if it's the first time, skip when clicked at = before
+    } else if (!!displayValue && !firstNumber) {
         firstNumber = parseFloat(displayValue);
     }
     operator = event.target.id;
@@ -40,7 +41,7 @@ function updateOperator(event) {
 function showResult() {
     secondNumber = !secondNumber ? parseFloat(displayValue) : secondNumber;
     firstNumber = operate(operator, firstNumber, secondNumber);
-    displayValue = firstNumber;
+    displayValue = null;
     updateDisplay(firstNumber);
 }
 
