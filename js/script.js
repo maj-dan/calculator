@@ -17,7 +17,9 @@ clearBtn.addEventListener("click", clearCalculator);
 
 function updateDisplayValue(event) {
     const numberClicked = event.target.textContent;
-    if(!displayValue) displayValue = "";
+    if (!displayValue) displayValue = "";
+    if (`${displayValue}`.includes(".") && numberClicked === ".") return;
+    if (numberClicked === "." && displayValue === "") displayValue = "0";
     displayValue += numberClicked;
     updateDisplay(displayValue);
 }
@@ -51,9 +53,9 @@ function showResult() {
         secondNumber = null;
         operator = null;
         displayValue = null;
-        return
+        return;
     }
-    firstNumber = operate(operator, firstNumber, secondNumber);
+    firstNumber = parseFloat(operate(operator, firstNumber, secondNumber).toFixed(14));
     displayValue = null;
     updateDisplay(firstNumber);
 }
@@ -78,7 +80,7 @@ function updateDisplay(value) {
     const DISPLAY_LENGTH = 9;
     if (integerFloatArray[0].length > DISPLAY_LENGTH){
         displayText = "9".repeat(DISPLAY_LENGTH);
-    } else if (!!integerFloatArray[1]){
+    } else if (integerFloatArray.length > 1){
         displayText = `${integerFloatArray[0]}.${integerFloatArray[1].slice(0,
                         (DISPLAY_LENGTH - (integerFloatArray[0].length + 1)))}`;
     } else {
