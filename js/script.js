@@ -41,7 +41,8 @@ function updateOperator(event) {
 
 function showResult() {
     //Don't proceed if = has been pressed before numbers were inputed
-    if (!firstNumber || (!!firstNumber && !displayValue)) return;
+    if (!firstNumber || (!!firstNumber && !!operator && !secondNumber &&
+    !displayValue)) return;
     secondNumber = !secondNumber ? parseFloat(displayValue) : secondNumber;
     //Show an "error message" if division by 0
     if (operator === "div" && secondNumber === 0) {
@@ -70,8 +71,21 @@ function clearCalculator() {
 */
 
 function updateDisplay(value) {
+    //so number will never overflow the display
+    const integerFloatArray = `${value}`.split(".");
+    let displayText;
+    //change to make the display show more or less numbers
+    const DISPLAY_LENGTH = 9;
+    if (integerFloatArray[0].length > DISPLAY_LENGTH){
+        displayText = "9".repeat(DISPLAY_LENGTH);
+    } else if (!!integerFloatArray[1]){
+        displayText = `${integerFloatArray[0]}.${integerFloatArray[1].slice(0,
+                        (DISPLAY_LENGTH - (integerFloatArray[0].length + 1)))}`;
+    } else {
+        displayText = integerFloatArray[0];
+    }
     const display = document.querySelector("#display");
-    display.textContent = value;
+    display.textContent = displayText;
 }
 
 function operate(operator, num1, num2) {
