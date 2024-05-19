@@ -17,7 +17,10 @@ clearBtn.addEventListener("click", clearCalculator);
 
 function updateDisplayValue(event) {
     const numberClicked = event.target.textContent;
-    if (!displayValue) displayValue = "";
+    if (!displayValue || parseFloat(displayValue) === 0 && 
+        !(`${displayValue}`.includes("."))){ 
+        displayValue = "";
+    }
     if (`${displayValue}`.includes(".") && numberClicked === ".") return;
     if (numberClicked === "." && displayValue === "") displayValue = "0";
     displayValue += numberClicked;
@@ -67,10 +70,6 @@ function clearCalculator() {
     displayValue = null;
     updateDisplay("");
 }
-
-/*
-
-*/
 
 function updateDisplay(value) {
     //so number will never overflow the display
