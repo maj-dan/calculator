@@ -15,6 +15,20 @@ equalBtn.addEventListener("click", showResult);
 const clearBtn = document.querySelector("#clr");
 clearBtn.addEventListener("click", clearCalculator);
 
+const deleteBtn = document.querySelector("#dlt");
+deleteBtn.addEventListener("click", removeLastDisplayChar);
+
+
+function removeLastDisplayChar() {
+    //set length manually if displayValue is null or undefined
+    const displayValueLength = displayValue ? `${displayValue}`.length : 0;
+    displayValue = displayValueLength > 1 ?
+    `${displayValue}`.slice(0, (displayValueLength - 1)) :
+    "";
+    updateDisplay(displayValue);
+}
+
+
 function updateDisplayValue(event) {
     const numberClicked = event.target.textContent;
     if (!displayValue || parseFloat(displayValue) === 0 && 
