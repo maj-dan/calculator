@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 body {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #calculator {
+    margin-top: 30px;
     width: 600px;
     height: 800px;
     background-color: rgb(215,206,195);
@@ -28,15 +34,23 @@ body {
 }
 
 #visor {
-    margin-top: 15px;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-top: 25px;
     width: 400px;
     height: 60px;
     background-color: rgb(45,15,15);
 }
 #display {
+    margin-bottom: 5px;
+    margin-right: 10px;
     background-color: rgb(45,15,15);
-    text-align: end;
     color: rgb(188,33,71);
+    font-family: VT323;
+    font-size: 45px;
+    letter-spacing: 20px;
+    text-shadow: 0px 0px 5px;
 }
 
 #btns-container {
@@ -45,4 +59,66 @@ body {
     margin-bottom: 40px;
     border-radius: 5px;
     padding: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.fun-container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+
+.num-container {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+
+.ope-container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+}
+
+button {
+    background-color: rgb(21,16,15);
+    box-shadow: 0px 0px 0px 2px black;
+    width: 102px;
+    height: 102px;
+    border-radius: 6px;
+    font-family: "Orbitron";
+    font-size: 60px;
+    font-weight: 600;
+}
+
+#eql {
+    height: 204px;
+}
+
+#zero {
+    width: 204px;
+}
+
+.number {
+    background-color: rgb(201,197,194);
+    color: rgb(21,16,15);
+}
+
+.operator {
+    background-color: rgb(26,126,170);
+    color: rgb(201,197,194);
+}
+
+.function {
+    background-color: rgb(212,38,72);
+    color: rgb(201,197,194);
+}
+
+footer {
+    margin-top: 10px;
+    text-align: center;
 }
